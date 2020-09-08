@@ -8,10 +8,11 @@ pipeline{
                     sh """
                             mkdir -p /home/deployments/
                             cd /home/deployments/
+                            rm -rf gallery_app
                             git clone https://fchirchir:Chirchir.2015@github.com/fchirchir/gallery_app.git
                             cd gallery_app
                             heroku git:remote -a gallery-friday
-                            git push heroku master
+                            git push --force heroku master
                         """
                 }
             }
