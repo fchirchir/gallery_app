@@ -7,7 +7,7 @@ pipeline{
                 nodejs('Node-14.9.0'){
                     sh """
                             mkdir -p /home/deployments/
-                            cd /home/deployments/'
+                            cd /home/deployments/
                             git config user.email "felixchirchir@gmail.com"
                             git config user.name "Felix Chirchir"
                             git clone git@github.com:fchirchir/gallery_app.git
