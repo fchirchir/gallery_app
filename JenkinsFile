@@ -8,8 +8,6 @@ pipeline{
                     sh """
                             mkdir -p /home/deployments/
                             cd /home/deployments/
-                            git config user.email "felixchirchir@gmail.com"
-                            git config user.name "Felix Chirchir"
                             git clone git@github.com:fchirchir/gallery_app.git
                             cd gallery_app
                             heroku git:remote -a gallery-friday
