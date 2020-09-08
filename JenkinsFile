@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment {
-        EMAIL_RECIPIENT = "jonathankibet46@gmail.com"
+        EMAIL_RECIPIENT = "felixchirchir@gmail.com"
     }
 
     stages{
@@ -15,7 +15,6 @@ pipeline{
                             cd /home/deployments/
                             rm -rf gallery_app
                             git clone https://fchirchir:Chirchir.2015@github.com/fchirchir/gallery_app.git
-                            cd gallery_app
                         """
                 }
             }
