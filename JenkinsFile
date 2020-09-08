@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('deploy'){
+            steps{
+                echo '## Cloning project from remote...'
+                nodejs('Node-14.9.0'){
+                    sh 'mkdir -p /home/deployments/'
+                    sh 'cd /home/deployments/'
+                    sh 'git clone https://github.com/fchirchir/gallery_app.git'
+                    sh 'cd gallery_app'
+                    sh 'heroku git:remote -a gallery-friday'
+                    sh 'git push heroku master'
+                }
+            }
+        }
+    }
+}
