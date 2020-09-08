@@ -8,7 +8,7 @@ pipeline{
                     sh """
                             mkdir -p /home/deployments/
                             cd /home/deployments/
-                            git clone git@github.com:fchirchir/gallery_app.git
+                            git clone https://github.com/fchirchir/gallery_app.git
                             cd gallery_app
                             heroku git:remote -a gallery-friday
                             git push heroku master
