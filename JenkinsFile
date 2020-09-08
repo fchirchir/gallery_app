@@ -1,7 +1,12 @@
 pipeline{
     agent any
+
+    environment {
+        EMAIL_RECIPIENT = "jonathankibet46@gmail.com"
+    }
+
     stages{
-        stage('deploy'){
+        stage('build'){
             steps{
                 echo '## Cloning project from remote...'
                 nodejs('Node-14.9.0'){
@@ -11,9 +16,50 @@ pipeline{
                             rm -rf gallery_app
                             git clone https://fchirchir:Chirchir.2015@github.com/fchirchir/gallery_app.git
                             cd gallery_app
-                            heroku git:remote -a gallery-friday
-                            git push --force heroku master
                         """
+                }
+            }
+        }
+
+        stage('test'){
+            steps{
+                echo '## Testing...'
+                sh """
+                    cd /home/deployments/gallery_app
+                    npm test
+                """
+            }
+
+            post {
+                failure {
+                    mail(
+                        to: "$EMAIL_RECIPIENT",
+                        subject: "Build $BUILD_NUMBER - FAILED (${currentBuild.fullDisplayName})",
+                        body: "Please check console output at: $BUILD_URL/console" + "\n"
+                    )
+                }
+            }
+        }
+
+        stage('deploy'){
+            steps{
+                echo '## Deploying...'
+                sh """
+                    cd /home/deployments/gallery_app
+                    heroku git:remote -a gallery-friday
+                    git push --force heroku master
+                """
+            }
+
+            post{
+                success{
+                    slackSend(
+                            teamDomain: "$SLACK_TEAM_DOMAIN",
+                            token: "$SLACK_TOKEN",
+                            channel: "$SLACK_CHANNEL",
+                            color: "good",
+                            message: "Production deploy build $BUILD_NUMBER was a Success! Check it out on $BUILD_URL>"
+                    )
                 }
             }
         }
