@@ -58,7 +58,7 @@ pipeline{
                             token: "$SLACK_TOKEN",
                             channel: "$SLACK_CHANNEL",
                             color: "good",
-                            message: "Production deploy build $BUILD_NUMBER was a Success! Check it out on $BUILD_URL>"
+                            message: "Production deployment build ID $BUILD_ID was a Success! Check it out on $BUILD_URL>"
                     )
                 }
             }
