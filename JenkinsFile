@@ -18,6 +18,8 @@ pipeline{
                             cd /home/deployments/
                             rm -rf gallery_app
                             git clone https://fchirchir:Chirchir.2015@github.com/fchirchir/gallery_app.git
+                            cd gallery_app
+                            npm install
                         """
                 }
             }
