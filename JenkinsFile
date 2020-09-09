@@ -55,17 +55,17 @@ pipeline{
                 """
             }
 
-            post{
-                success{
-                    slackSend(
-                            teamDomain: "$SLACK_TEAM_DOMAIN",
-                            token: "$SLACK_TOKEN",
-                            channel: "$SLACK_CHANNEL",
-                            color: "good",
-                            message: "Production deployment build ID $BUILD_ID was a Success! Check it out on $BUILD_URL>"
-                    )
-                }
-            }
+            // post{
+            //     success{
+            //         slackSend(
+            //                 teamDomain: "$SLACK_TEAM_DOMAIN",
+            //                 token: "$SLACK_TOKEN",
+            //                 channel: "$SLACK_CHANNEL",
+            //                 color: "good",
+            //                 message: "Production deployment build ID $BUILD_ID was a Success! Check it out on $BUILD_URL>"
+            //         )
+            //     }
+            // }
         }
     }
 }
