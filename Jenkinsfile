@@ -14,8 +14,8 @@ pipeline{
                 echo '## Cloning project from remote...'
                 nodejs('Node-14.9.0'){
                     sh """
-                            mkdir -p /home/deployments/
-                            cd /home/deployments/
+                            mkdir -p /home/felix/Documents/moringa-school-projects/devOps/jenkins_builds
+                            cd /home/felix/Documents/moringa-school-projects/devOps/jenkins_builds
                             rm -rf gallery_app
                             git clone https://fchirchir:Chirchir.2015@github.com/fchirchir/gallery_app.git
                             cd gallery_app
@@ -29,7 +29,7 @@ pipeline{
             steps{
                 echo '## Testing...'
                 sh """
-                    cd /home/deployments/gallery_app
+                    cd /home/felix/Documents/moringa-school-projects/devOps/jenkins_builds/gallery_app
                     npm test
                 """
             }
@@ -49,7 +49,7 @@ pipeline{
             steps{
                 echo '## Deploying...'
                 sh """
-                    cd /home/deployments/gallery_app
+                    cd /home/felix/Documents/moringa-school-projects/devOps/jenkins_builds/gallery_app
                     heroku git:remote -a gallery-friday
                     git push --force heroku master
                 """
