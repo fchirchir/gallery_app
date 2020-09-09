@@ -3,9 +3,9 @@ pipeline{
 
     environment {
         EMAIL_RECIPIENT = "felixchirchir@gmail.com"
-        SLACK_TEAM_DOMAIN = "SLACK_TEAM_DOMAIN"
-        SLACK_TOKEN = "SLACK_TOKEN"
-        SLACK_CHANNEL = "SLACK_CHANNEL"
+        SLACK_TEAM_DOMAIN = "devops-lej2911"
+        SLACK_TOKEN = "0AK8q7LZXMvaKelQZDbWiXNx"
+        SLACK_CHANNEL = "chirchir_ip1"
     }
 
     stages{
@@ -55,17 +55,17 @@ pipeline{
                 """
             }
 
-            // post{
-            //     success{
-            //         slackSend(
-            //                 teamDomain: "$SLACK_TEAM_DOMAIN",
-            //                 token: "$SLACK_TOKEN",
-            //                 channel: "$SLACK_CHANNEL",
-            //                 color: "good",
-            //                 message: "Production deployment build ID $BUILD_ID was a Success! Check it out on $BUILD_URL>"
-            //         )
-            //     }
-            // }
+            post{
+                success{
+                    slackSend(
+                            teamDomain: "$SLACK_TEAM_DOMAIN",
+                            token: "$SLACK_TOKEN",
+                            channel: "$SLACK_CHANNEL",
+                            color: "good",
+                            message: "Production deployment build ID $BUILD_ID was a Success! Check it out on $BUILD_URL>"
+                    )
+                }
+            }
         }
     }
 }
